@@ -5,24 +5,23 @@
 #include "lwip/netif.h"
 #include <stdint.h>
 #include "FreeRTOS.h"
+#include "queue.h"
 #include "task.h"
+
 
 #define COMMAND_PORT 8000
 #define DATA_PORT 7999
-#define MAX_CLIENTS 10
+#define CLIENTS_TASKS_NUMBER 3
+#define CLIENTS_QUEUE_SIZE 10
 #define BUFFER_SIZE 1024
 
 extern struct netif gnetif;
 
-typedef struct {
-    struct netconn *conn;
-    TaskHandle_t *taskHandle;
-} Client;
-
 struct netconn *command_conn;
 struct netconn *data_conn;
+QueueHandle_t clients_queue;
 
 void ftp_start();
-void disconnect_client();
+void ftp_start_paraller();
 
 #endif /* FTP_SERVER_H_ */

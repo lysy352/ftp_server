@@ -7,7 +7,6 @@ typedef struct {
 } ClientData;
 
 void serve_client(void *client_conn);
-//void send_msg(char *status, char *msg, int sock_fd);
-//Request *read_msg(int sock_fd);
+void serve_client_task(void *arg);
 
 #endif //FTPSERVER_CLIENT_THREAD_H

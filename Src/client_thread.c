@@ -218,13 +218,11 @@ void mkd_response(char *args, ClientData *client_data) {
     send_msg("257", "Directory created", client_data->conn);
 }
 
-void close_client_thread(ClientData *client_data) {
+void free_resources(ClientData *client_data) {
     netconn_close(client_data->conn);
     netconn_delete(client_data->conn);
     free(client_data->current_dir);
-    free(client_data);
-
-    disconnect_client();
+    free(client_data);    
 }
 
 void quit_response(ClientData *client_data) {
@@ -274,10 +272,38 @@ void serve_client(void *client_conn) {
     while(1) {
         req = read_msg(client_data->conn);
         if(req == NULL) {
-            close_client_thread(client_data); 
-            printf("NULL message\r\n");           
+            free_resources(client_data); 
+            printf("NULL message\r\n");     
+            return;      
         }
         serve_request(req, client_data);
         free(req);
     }    
+}
+
+void serve_client_task(void *arg) {
+    while(1) {
+        ClientData *client_data = malloc(sizeof(ClientData));
+        
+        if(!xQueueReceive(clients_queue, &client_data->conn, portMAX_DELAY)) {
+            printf("xQueueReceive error, serve_client_task\r\n");
+        }
+        client_data->current_dir = malloc(sizeof(char)*2);
+        strcpy(client_data->current_dir, "/");
+
+        send_msg("220",  "Welcome", client_data->conn);
+
+        Request *req;
+        while(1) {
+            req = read_msg(client_data->conn);
+            if(req == NULL) {
+                free_resources(client_data); 
+                printf("NULL message\r\n");     
+                return;      
+            }
+            serve_request(req, client_data);
+            free(req);
+        }    
+    }
+
 }
