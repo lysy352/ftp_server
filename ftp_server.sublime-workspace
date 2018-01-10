@@ -1,0 +1,497 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ex",
+				"express"
+			],
+			[
+				"lo",
+				"log\t( x: number ): number Math"
+			],
+			[
+				"bod",
+				"body\t: HTMLElement Document"
+			],
+			[
+				"p",
+				"printf\tprintf …"
+			],
+			[
+				"clie",
+				"clients_number\tuint8_t clients_number"
+			],
+			[
+				"cl",
+				"clients_number\tuint8_t clients_number"
+			],
+			[
+				"vDe",
+				"vTaskDelay\tvoid vTaskDelay(const TickType_t xTicksToDelay)"
+			],
+			[
+				"USB",
+				"USB_Process\tvoid USB_Process(ApplicationTypeDef Appli_state)"
+			],
+			[
+				"create",
+				"create_dir"
+			],
+			[
+				"cli",
+				"client_data_conn\tstruct netconn * client_data_conn"
+			],
+			[
+				"da",
+				"data_size\tuint16_t data_size"
+			],
+			[
+				"resp",
+				"respond_size\tsize_t respond_size"
+			],
+			[
+				"send",
+				"send_data\tint8_t send_data(void *data, size_t data_size, struct netconn *conn)"
+			],
+			[
+				"size",
+				"size_t\tsize_t"
+			],
+			[
+				"int",
+				"int8_t"
+			],
+			[
+				"buf",
+				"buf_size\tuint16_t buf_size"
+			],
+			[
+				"bu",
+				"buf_size\tuint16_t buf_size"
+			],
+			[
+				"clien",
+				"client_data_conn\tstruct netconn * client_data_conn"
+			],
+			[
+				"uin",
+				"uint8_t"
+			],
+			[
+				"ms",
+				"msg_len\tuint16_t msg_len"
+			],
+			[
+				"netbu",
+				"netbuf"
+			],
+			[
+				"msg",
+				"msg_len\tuint16_t msg_len"
+			],
+			[
+				"netbuf",
+				"netbuf_data"
+			],
+			[
+				"res",
+				"respond_size\tsize_t respond_size"
+			],
+			[
+				"netoc",
+				"netconn_write"
+			],
+			[
+				"con",
+				"conn"
+			],
+			[
+				"CLIE",
+				"CLIENT_TASK_STACK_SIZE"
+			],
+			[
+				"netconn",
+				"netconn_accept"
+			],
+			[
+				"com",
+				"command_conn"
+			],
+			[
+				"ip",
+				"ip_addr\tip_addr_t ip_addr"
+			],
+			[
+				"open",
+				"open_socket"
+			],
+			[
+				"comm",
+				"command_socket\tstruct netconn * command_socket"
+			],
+			[
+				"reu",
+				"return\treturn expression"
+			],
+			[
+				"PORT",
+				"COMMAND_PORT\tCOMMAND_PORT"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"uint",
+				"uint16_t\tuint16_t"
+			],
+			[
+				"net",
+				"netconn"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"FR",
+				"FR_OK"
+			],
+			[
+				"consol",
+				"console.log"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"createSer",
+				"http.createServer"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"ch1",
+				"ch1_edit"
+			],
+			[
+				"sn",
+				"sndFreq"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Src/lwip.c",
+			"settings":
+			{
+				"buffer_size": 6473,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/stm32.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/stm32.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/stm32.sublime-build",
+					""
+				],
+				[
+					"Packages/User/stm32.sublime-build",
+					"make"
+				],
+				[
+					"Packages/User/stm32.sublime-build",
+					"program"
+				]
+			],
+			[
+				"Packages/User/stm32.sublime-build",
+				"make"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 190.0,
+		"last_filter": "Package Control: ins",
+		"selected_items":
+		[
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 488.0
+	},
+	"console":
+	{
+		"height": 143.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Drivers",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Inc",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Middlewares",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Middlewares/Third_Party",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Middlewares/Third_Party/LwIP",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Middlewares/Third_Party/LwIP/src",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Src"
+	],
+	"file_history":
+	[
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Makefile",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/Src/main.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server_2/ftp_server/.clang_complete",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Middlewares/Third_Party/LwIP/src/include/lwip/debug.h",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/main.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/test.c",
+		"/home/dawid/.config/sublime-text-3/Packages/User/stm32.sublime-build",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/ftp_server.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Inc/ftp_server.h",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/client_thread.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Makefile",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/ethernetif.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/lwip.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Middlewares/Third_Party/LwIP/src/core/ipv4/dhcp.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/my.sublime-build",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/usb_host.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Src/memory_access.c",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/Inc/client_thread.h",
+		"/media/Dane/Studia/Semestr_5/SW/ftp_server/.clang_complete",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Makefile",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Src/client_thread.c",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Src/ftp_server.c",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Middlewares/Third_Party/LwIP/src/include/lwip/api.h",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Inc/ftp_server.h",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Inc/client_thread.h",
+		"/media/Dane/Studia/Semestr_5/SW/serw/.clang_complete",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Src/memory_access.c",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Inc/memory_access.h",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Inc/FreeRTOSConfig.h",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Src/main.c",
+		"/media/Dane/Studia/Semestr_5/SW/serw/Src/request.c",
+		"/media/Dane/Studia/Semestr_5/SW/TrueStudio/serwerFTP/Src/memory_access.c",
+		"/media/Dane/Studia/Semestr_5/SW/TrueStudio/serwerFTP/Src/main.c",
+		"/media/Dane/Desktop_Linux/to/milestone1.txt",
+		"/home/dawid/.config/sublime-text-3/Packages/User/EasyClangComplete.sublime-settings",
+		"/media/Dane/Studia/Semestr_5/SW/TrueStudio/serwerFTP/CMakeLists.txt",
+		"/home/dawid/.config/sublime-text-3/Packages/ClangAutoComplete/ClangAutoComplete.sublime-settings",
+		"/home/dawid/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"__FILE",
+			");\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Src/lwip.c",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 6473,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6473,
+								6473
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2856.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 179.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.nodejs":
+	{
+		"height": 114.0
+	},
+	"pinned_build_system": "Packages/User/stm32.sublime-build",
+	"project": "ftp_server.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 294.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

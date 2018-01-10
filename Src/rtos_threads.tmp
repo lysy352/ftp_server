@@ -1,0 +1,24 @@
+
+#n#n/* StartDefaultTask function */
+void StartDefaultTask(void const * argument)
+{
+#t/* init code for LWIP */
+#tMX_LWIP_Init();#n
+            
+#t/* init code for USB_HOST */
+#tMX_USB_HOST_Init();#n
+            
+#t/* init code for FATFS */
+#tMX_FATFS_Init();#n
+            
+
+#n
+#t/* USER CODE BEGIN 5 */
+#t/* Infinite loop */
+#tfor(;;)
+#t{
+#t#tosDelay(1);
+#t}
+#t/* USER CODE END 5 */ 
+}
+#n

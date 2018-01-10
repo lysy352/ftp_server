@@ -1,0 +1,22 @@
+
+#t uint8_t MACAddr[6] ;
+#theth.Instance = ETH;
+#theth.Init.AutoNegotiation = ETH_AUTONEGOTIATION_ENABLE;
+#theth.Init.PhyAddress = LAN8742A_PHY_ADDRESS;
+#tMACAddr[0] = 0x00;
+#tMACAddr[1] = 0x80;
+#tMACAddr[2] = 0xE1;
+#tMACAddr[3] = 0x00;
+#tMACAddr[4] = 0x00;
+#tMACAddr[5] = 0x00;
+#theth.Init.MACAddr = &MACAddr[0];
+#theth.Init.RxMode = ETH_RXINTERRUPT_MODE;
+#theth.Init.ChecksumMode = ETH_CHECKSUM_BY_HARDWARE;
+#theth.Init.MediaInterface = ETH_MEDIA_INTERFACE_RMII;
+#n
+#t/* USER CODE BEGIN MACADDRESS */
+#t#t
+#t/* USER CODE END MACADDRESS */
+#n
+#thal_eth_init_status = HAL_ETH_Init(&heth);
+#n
