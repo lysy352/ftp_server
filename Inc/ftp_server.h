@@ -13,7 +13,10 @@
 #define DATA_PORT 7999
 #define CLIENTS_TASKS_NUMBER 3
 #define CLIENTS_QUEUE_SIZE 10
-#define BUFFER_SIZE 1024
+#define BUFFER_LEN 1024
+#define MAX_RESPOND_LEN 128
+#define MAX_LIST_DATA_LEN 512
+
 
 extern struct netif gnetif;
 

@@ -91,7 +91,8 @@ void accept_client_paraller() {
 
 void server_ftp_task(void *arg) {
     while(1) {      
-        accept_client();       
+        accept_client();     
+        vTaskDelay(100);  
     }
 }
 

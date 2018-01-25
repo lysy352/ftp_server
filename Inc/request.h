@@ -3,16 +3,15 @@
 
 #include "stdint.h"
 
+#define COMMAND_SIZE 5
+#define ARGS_SIZE 128
+
 typedef struct {
-	char *command;
-	char *args;
+	char command[COMMAND_SIZE];
+	char args[ARGS_SIZE];
 } Request;
 
-
-Request *init_Request(uint8_t cmd_len, uint16_t args_len);
-
-void free_Request(Request *req);
-
-Request *get_request(char *msg);
+Request get_request(char *msg);
+uint8_t update_request(Request *req, char *msg);
 
 #endif /* REQUEST_H_ */

@@ -8,8 +8,3 @@ void test() {
 	ftp_start();
 	printf("TEST END\r\n");
 }
-
-void test_memory_access() {
-	vTaskDelay(1000);
-	printf("%s\r\n", list_directory("/"));
-}

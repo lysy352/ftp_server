@@ -4,15 +4,11 @@
 #include "usb_host.h"
 #include <string.h>
 
-int8_t mount_usb() {
-	fs = malloc(sizeof(FATFS));
-
-	if(f_mount(fs, "", 1) != FR_OK) {
-		printf("usb mount error\r\n");
-		free(fs);
+int8_t mount_usb() {	
+	if(f_mount(&fs, "", 1) != FR_OK) {
+		printf("usb mount error\r\n");		
 		return 0;
 	}
-
 	printf("mounted USB\r\n");
 	return 1;
 }
@@ -22,8 +18,6 @@ int8_t unmount_usb() {
 		printf("usb unmount error\r\n");
 		return 0;
 	}
-	free(fs);
-
 	printf("unmounted USB\r\n");
 	return 1;
 }
@@ -35,72 +29,109 @@ int8_t is_full_path(const char *path) {
 	return 0;
 }
 
-char *get_full_path(const char *current_path, const char *path) {
-    char *new_path = NULL;
+uint8_t get_full_path(char *current_path, const char *path) {
     if(is_full_path(path)) {
-        new_path = malloc(sizeof(char)*(strlen(path) + 1));
-        strcpy(new_path, path);
-    } else if(current_path == NULL) {
-        new_path = malloc(sizeof(char) * (1 + strlen(path) + 1));
-        sprintf(new_path, "/%s", path);
+    	if(strlen(path) + 1 > MAX_PATH_LEN)
+    		return 0;
+
+        strcpy(current_path, path);
+
+    } else if(current_path[0] == '\0') {
+    	if(strlen(path) + 2 > MAX_PATH_LEN)
+    		return 0;
+
+        sprintf(current_path, "/%s", path);
+
     } else if(strcmp(current_path, "/") == 0) {
-        new_path = malloc(sizeof(char)*(strlen(current_path) + strlen(path) + 1));
+    	if(strlen(current_path) + strlen(path) + 1 > MAX_PATH_LEN)
+    		return 0;
+
+    	char new_path[MAX_PATH_LEN];
         sprintf(new_path, "%s%s", current_path, path);
+        strcpy(current_path, path);
+
     } else {
-        new_path = malloc(sizeof(char)*(strlen(current_path) + 1 + strlen(path) + 1));
+    	if(strlen(current_path) + strlen(path) + 2 > MAX_PATH_LEN)
+    		return 0;
+
+    	char new_path[MAX_PATH_LEN];
         sprintf(new_path, "%s/%s", current_path, path);
+        strcpy(current_path, path);
     }
-    return new_path;
+    return 1;
 }
 
-char *get_final_path(const char *full_path) {
-    char *new_path = malloc(sizeof(char)*(strlen(BASIC_PATH) + strlen(full_path) + 1));
-    new_path[0] = '\0';
+uint8_t get_final_path(char *full_path) {
+    if(strlen(BASIC_PATH) + strlen(full_path) + 1 > MAX_PATH_LEN)
+    	return 0;
+
+    char new_path[MAX_PATH_LEN];    
     sprintf(new_path, "%s%s", BASIC_PATH, full_path);
-    return new_path;
+    strcpy(full_path, new_path);
+    return 1;
 }
 
-char *get_final_path_2(const char *current_path, const char *path) {
-    char *full_path = get_full_path(current_path, path);
-    char *final_path = get_final_path(full_path);
-    free(full_path);
-    return final_path;
+uint8_t get_final_path_2(char *current_path, const char *path) {
+    if(!get_full_path(current_path, path))
+    	return 0;
+
+    if(!get_final_path(current_path))
+    	return 0;
+
+    return 1;
 }
 
 int8_t directory_exist(const char *full_path) {
-    char *final_path = get_final_path(full_path);
+	char final_path[MAX_PATH_LEN]; 
+	strcpy(final_path, full_path);	
+    if(!get_final_path(final_path)) {
+    	printf("cannot get directory path: %s\r\n", full_path);
+    	return 0;
+    }
+
     DIR dir;
     if(f_opendir(&dir, final_path) != FR_OK) {
-		printf("cannot change directory: %s\n", full_path);
-		free(final_path);
+		printf("cannot change to directory: %s\r\n", full_path);
 		return 0;
 	}
 	f_closedir(&dir);
-	free(final_path);
 	return 1;  
 }
 
-char *change_directory(const char *current_path, const char *path) {
-    char *full_path = get_full_path(current_path, path);
-    if(directory_exist(full_path)) {
-        return full_path;
+uint8_t change_directory(char *current_path, const char *path) {
+	char new_path[MAX_PATH_LEN]; 
+	strcpy(new_path, current_path);
+
+    if(!get_full_path(new_path, path))
+    	return 0;
+
+    if(!directory_exist(new_path)) {
+    	FRESULT res = f_mkdir(new_path);
+    	if(res != FR_OK) {
+			printf("connot make directory: %s\r\n", new_path);
+        	return 0;
+    	}
     }
-    free(full_path);
-    return NULL;
+
+    strcpy(current_path, new_path);
+    printf("directory changed: %s\r\n", current_path);
+    return 1;
 }
 
-char *list_directory(const char *current_path) {
-    char *dir_path = get_final_path(current_path);
+uint8_t list_directory(const char *current_path, char *buffer, uint16_t buffer_size) {
+	char dir_path[MAX_PATH_LEN]; 
+	strcpy(dir_path, current_path);	
+
+    if(!get_final_path(dir_path))
+    	return 0;
+
     DIR dir;
 	if(f_opendir(&dir, dir_path) != FR_OK) {
-		printf("cannot open directory %s\r\n", dir_path);
-		free(dir_path);
-		return NULL;
+		printf("cannot open directory: %s\r\n", dir_path);
+		return 0;
 	}
-	free(dir_path);
 
-    char *list = malloc(sizeof(char)*MAX_LIST);
-    list[0] = '\0';
+    buffer[0] = '\0';
 
     FILINFO finfo;
 	while(1) {
@@ -108,71 +139,76 @@ char *list_directory(const char *current_path) {
 			break;
 
 		if(finfo.fattrib & AM_DIR )
-			strcat(list, "+/");
+			strcat(buffer, "+/");
 		else 
-			sprintf(list + strlen(list), "+r,s%lu", finfo.fsize);
+			sprintf(buffer + strlen(buffer), "+r,s%lu", finfo.fsize);
 		
-		strcat(list,",\t");
-		strcat(list, finfo.fname);
-		strcat(list, "\r\n" );
+		strcat(buffer,",\t");
+		strcat(buffer, finfo.fname);
+		strcat(buffer, "\r\n");
 	}
 	f_closedir(&dir);
-	return list;
+
+	printf("directory list, success\n");
+	return 1;
 }
 
-FIL *open_file(const char *current_path, const char *filename) {
-    char *filepath = get_final_path_2(current_path, filename);
-    FIL *file = malloc(sizeof(FIL));
+uint8_t open_file(const char *current_path, const char *filename, FIL *file) {
+	char filepath[MAX_PATH_LEN]; 
+	strcpy(filepath, current_path);	
+
+    if(!get_final_path_2(filepath, filename))
+    	return 0;    
 
     if(f_open(file, filepath, FA_OPEN_EXISTING | FA_READ) != FR_OK ) {
-		printf("cannot open file %s\r\n", filepath);
-		free(filepath);
-		free(file);
-		return NULL;
+		printf("cannot open file %s\r\n", filepath);		
+		return 0;
 	}
-
-    free(filepath);
-    return file;
+    return 1;
 }
 
-FIL *create_file(const char *current_path, const char *filename) {
-    char *filepath = get_final_path_2(current_path, filename);
-    FIL *file = malloc(sizeof(FIL));
+uint8_t create_file(const char *current_path, const char *filename, FIL *file) {
+    char filepath[MAX_PATH_LEN]; 
+	strcpy(filepath, current_path);	
+
+    if(!get_final_path_2(filepath, filename))
+    	return 0;    
 
 	if(f_open(file, filepath, FA_CREATE_NEW | FA_WRITE) != FR_OK ) {
-		printf("cannot create file %s\r\n", filepath);
-		free(filepath);
-		free(file);
-		return NULL;
+		printf("cannot create file %s\r\n", filepath);		
+		return 0;
 	}
-	free(filepath);
-	return file;
+	return 1;
 }
 
 void close_file(FIL *file) {
-	f_close(file);
-	free(file);
-	file = NULL;
+	f_close(file);	
 }
 
 int8_t delete_file(const char *current_path, const char *filename) {
-    char *filepath = get_final_path_2(current_path, filename);
+    char filepath[MAX_PATH_LEN]; 
+	strcpy(filepath, current_path);	
+
+    if(!get_final_path_2(filepath, filename))
+    	return 0;    
 
 	if(f_unlink(filepath) != FR_OK) {
 		printf("cannot delete file: %s\r\n", filepath);
-		free(filepath);
 		return 0;
 	}
 	
 	printf("deleted file: %s\r\n", filepath);
-	free(filepath);
 	return 1;
 }
 
 int8_t create_dir(const char *current_path, const char *dir_name) {
-    char *dir_path = get_final_path_2(current_path, dir_name);
+	char dir_path[MAX_PATH_LEN]; 
+	strcpy(dir_path, current_path);	
+
+    if(!get_final_path_2(dir_path, dir_name))
+    	return 0;
+  
     FRESULT res = f_mkdir(dir_path);
-    free(dir_path);
     if(res != FR_OK) {
 		printf("connot make directory: %s\r\n", dir_path);
         return 0;
@@ -180,8 +216,8 @@ int8_t create_dir(const char *current_path, const char *dir_name) {
     return 1;
 }
 
-uint16_t write_to_file(FIL *file, char *buf, uint16_t size) {
-	uint16_t bw;
+unsigned int write_to_file(FIL *file, char *buf, uint16_t size) {
+	unsigned int bw;
 	if(f_write(file, buf, size, &bw) != FR_OK) {
 		printf("write to file error\r\n");
 		return -1;
@@ -189,8 +225,8 @@ uint16_t write_to_file(FIL *file, char *buf, uint16_t size) {
 	return bw;
 }
 
-uint16_t read_file(FIL *file, char *buf, uint16_t size) {
-	uint16_t br;
+unsigned int read_file(FIL *file, char *buf, uint16_t size) {
+	unsigned int br;
 	if(f_read(file, buf, size, &br) != FR_OK) {
 		printf("read file error\r\n");
 		return -1;
